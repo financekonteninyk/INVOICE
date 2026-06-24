@@ -6,7 +6,7 @@
     <title>Kontenin.yk | Premium Invoice System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
@@ -330,13 +330,11 @@
 </head>
 <body>
 
-    <!-- LOADING SCREEN -->
     <div id="loading-screen">
         <div class="loader-logo"><i class="fa-solid fa-bolt" style="color: var(--primary);"></i> Kontenin.yk</div>
         <div class="loader-bar"><div class="loader-progress"></div></div>
     </div>
 
-    <!-- SIDEBAR NAVIGATION (DESKTOP) -->
     <aside>
         <div class="brand-container">
             <div class="brand-logo-frame" id="sidebar-logo-frame">
@@ -356,7 +354,6 @@
         </ul>
     </aside>
 
-    <!-- BOTTOM NAVIGATION (MOBILE) -->
     <div class="bottom-nav">
         <button class="bottom-nav-item active" id="m-nav-dashboard" onclick="switchView('dashboard')"><i class="fa-solid fa-chart-pie"></i>Dashboard</button>
         <button class="bottom-nav-item" id="m-nav-create" onclick="switchView('create')"><i class="fa-solid fa-plus"></i>Invoice</button>
@@ -365,10 +362,8 @@
         <button class="bottom-nav-item" id="m-nav-settings" onclick="switchView('settings')"><i class="fa-solid fa-gear"></i>Settings</button>
     </div>
 
-    <!-- MAIN APP WORKSPACE -->
     <main>
 
-        <!-- DASHBOARD VIEW -->
         <div id="view-dashboard" class="app-view active">
             <div class="page-header">
                 <div class="page-title">
@@ -398,7 +393,6 @@
             </div>
         </div>
 
-        <!-- CREATE INVOICE VIEW -->
         <div id="view-create" class="app-view">
             <div class="page-header">
                 <div class="page-title">
@@ -410,7 +404,6 @@
 
             <div class="workspace-split">
                 <div class="form-side">
-                    <!-- Config Box -->
                     <div class="card">
                         <div class="card-title">Document Options</div>
                         <div class="form-grid">
@@ -456,7 +449,6 @@
                         </div>
                     </div>
 
-                    <!-- Client Box -->
                     <div class="card">
                         <div class="card-title">Target Client Profile</div>
                         <div class="form-grid">
@@ -471,7 +463,6 @@
                         </div>
                     </div>
 
-                    <!-- Items Box -->
                     <div class="card">
                         <div class="card-title">Services Line Items</div>
                         <table class="items-table-form">
@@ -483,7 +474,6 @@
                         <button class="btn btn-secondary" style="margin-top:14px;" onclick="addInvoiceItemRow(); triggerAutosave();"><i class="fa-solid fa-plus"></i> Add Line Item</button>
                     </div>
 
-                    <!-- Gateway Box -->
                     <div class="card">
                         <div class="card-title">Financial Modifiers</div>
                         <div class="form-grid">
@@ -498,7 +488,6 @@
                     </div>
                 </div>
 
-                <!-- PREVIEW SIDE (HIGH END SPEC) -->
                 <div class="preview-side preview-sticky">
                     <div style="display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap;" class="btn-group-preview">
                         <button class="btn btn-primary" onclick="saveCurrentInvoice()"><i class="fa-solid fa-floppy-disk"></i> Save Data</button>
@@ -587,7 +576,6 @@
             </div>
         </div>
 
-        <!-- REPOSITORY VIEW -->
         <div id="view-history" class="app-view">
             <div class="page-header"><div class="page-title"><h2>Invoice Repository</h2><p>Track, filter, and audit logs</p></div></div>
             <div class="card">
@@ -605,7 +593,6 @@
             </div>
         </div>
 
-        <!-- BANK VIEW -->
         <div id="view-banks" class="app-view">
             <div class="page-header"><div class="page-title"><h2>Remittance Gateways</h2><p>Manage routing accounts</p></div></div>
             <div class="workspace-split">
@@ -628,9 +615,9 @@
             </div>
         </div>
 
-        <!-- PROFILE SETTINGS VIEW (WITH REAL PERSISTENT CUSTOM LOGO UPLOAD) -->
         <div id="view-settings" class="app-view">
             <div class="page-header"><div class="page-title"><h2>Profile Setup</h2><p>Configure dynamic corporate identity profile variables</p></div></div>
+            
             <div class="card" style="max-width: 600px;">
                 <div class="card-title">Corporate Master Configurations</div>
                 <div class="form-group">
@@ -650,6 +637,18 @@
                     <input type="file" accept="image/*" onchange="handleQRISUpload(event)">
                 </div>
                 <button class="btn btn-primary" style="margin-top:10px; width:100%; justify-content:center;" onclick="saveSettings()"><i class="fa-solid fa-circle-check"></i> Apply Master Global Changes</button>
+            </div>
+
+            <div class="card" style="max-width: 600px;">
+                <div class="card-title" style="color: #F59E0B;"><i class="fa-solid fa-share-nodes"></i> Perangkat Lintas Data (Desktop ↔ HP Sync)</div>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5;">
+                    Karena sistem ini berjalan tanpa database server (*LocalStorage*), gunakan tombol di bawah ini untuk memindahkan data invoice Anda antar HP dan Desktop dengan mudah.
+                </p>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <button class="btn btn-secondary" onclick="exportDataToJSON()" style="flex-grow: 1; justify-content: center;"><i class="fa-solid fa-download"></i> Backup / Ekspor Semua Data</button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()" style="flex-grow: 1; justify-content: center; background-color: #1e1b4b;"><i class="fa-solid fa-upload"></i> Impor / Masukkan Data</button>
+                    <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importDataFromJSON(event)">
+                </div>
             </div>
         </div>
 
@@ -696,6 +695,43 @@
             }
             updatePreview();
         };
+
+        // NEW: EXPORT DATA TO FILE
+        function exportDataToJSON() {
+            let backupPackage = {
+                invoices: localStorage.getItem('knt_v2_invoices'),
+                banks: localStorage.getItem('knt_v2_banks'),
+                settings: localStorage.getItem('knt_v2_settings')
+            };
+            let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupPackage));
+            let downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `KONTENIN_INVOICE_BACKUP_2026.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+
+        // NEW: IMPORT DATA FROM FILE
+        function importDataFromJSON(e) {
+            let file = e.target.files[0];
+            if (!file) return;
+            let reader = new FileReader();
+            reader.onload = function(evt) {
+                try {
+                    let imported = JSON.parse(evt.target.result);
+                    if (imported.invoices) localStorage.setItem('knt_v2_invoices', imported.invoices);
+                    if (imported.banks) localStorage.setItem('knt_v2_banks', imported.banks);
+                    if (imported.settings) localStorage.setItem('knt_v2_settings', imported.settings);
+                    
+                    alert('Data Berhasil Disinkronkan! Aplikasi akan memuat ulang halaman.');
+                    window.location.reload();
+                } catch(err) {
+                    alert('Gagal membaca file backup. Pastikan format file benar.');
+                }
+            };
+            reader.readAsText(file);
+        }
 
         function resetFormDefaults() {
             document.getElementById('inv-date').value = new Date().toISOString().substring(0, 10);
@@ -823,7 +859,7 @@
                 let reader = new FileReader();
                 reader.onload = function(evt) {
                     settings.logo = evt.target.result;
-                    localStorage.setItem('knt_v2_settings', JSON.stringify(settings)); // Direct persist saving
+                    localStorage.setItem('knt_v2_settings', JSON.stringify(settings));
                     applyGlobalIdentityUIVariables();
                     triggerAutosave();
                 };
@@ -1098,7 +1134,7 @@
             const dbody = document.getElementById('dashboard-recent-table'); if(!dbody) return;
             dbody.innerHTML = '';
             invoices.slice(0, 5).forEach(i => {
-                dbody.insertAdjacentHTML('beforeend', `<tr><td><strong>${i.id}</strong></td><td>${i.clientName}</td><td>${i.type}</td><td>${formatCurrency(i.grandTotal, i.currency)}</td><td>${i.status}</td><td>${i.date}</td></tr>`);
+                dbody.insertAdjacentHTML('beforeend', `<tr><td><strong>${i.id}</strong></td><td>${i.clientName}</td><td>${i.type}</td><td>formatCurrency(i.grandTotal, i.currency)</td><td>${i.status}</td><td>${i.date}</td></tr>`);
             });
         }
     </script>
